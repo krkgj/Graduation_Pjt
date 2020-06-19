@@ -23,6 +23,7 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Rect;
@@ -155,7 +156,6 @@ public class CameraActivity extends AppCompatActivity
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mInputMat = inputFrame.rgba();
-
         if (mMode == 2) {
             if (mResultMat == null) {
                 mResultMat = new Mat(mInputMat.rows(), mInputMat.cols(), mInputMat.type());
@@ -163,6 +163,7 @@ public class CameraActivity extends AppCompatActivity
             ConvertRGBtoGray(mInputMat.getNativeObjAddr(), mResultMat.getNativeObjAddr());
             return mResultMat;
         } else {
+            Core.flip(mInputMat, mInputMat, 1);
             detectFace();
 
             return mInputMat;
@@ -215,7 +216,6 @@ public class CameraActivity extends AppCompatActivity
             rectangle(mInputMat, rc, new Scalar(255, 0, 0), 2);
         }
     }
-
 
     // permission
     static final int PERMISSIONS_REQUEST_CODE = 1000;
