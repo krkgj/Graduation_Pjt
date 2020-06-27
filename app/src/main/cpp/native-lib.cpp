@@ -4,19 +4,19 @@
 
 using namespace cv;
 
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_project_opencvproject_ImageActivity_detectEdgeJNI(JNIEnv *env, jobject instance,
-                                                           jlong inputImage, jlong outputImage,
-                                                           jint th1, jint th2) {
-
-    // TODO
-    Mat &inputMat = *(Mat *) inputImage;
-    Mat &outputMat = *(Mat *) outputImage;
-
-    cvtColor(inputMat, outputMat, COLOR_RGB2GRAY);
-    Canny(outputMat, outputMat, th1, th2);
-}
+//extern "C"
+//JNIEXPORT void JNICALL
+//Java_com_project_opencvproject_ImageActivity_detectEdgeJNI(JNIEnv *env, jobject instance,
+//                                                           jlong inputImage, jlong outputImage,
+//                                                           jint th1, jint th2) {
+//
+//    // TODO
+//    Mat &inputMat = *(Mat *) inputImage;
+//    Mat &outputMat = *(Mat *) outputImage;
+//
+//    cvtColor(inputMat, outputMat, COLOR_RGB2GRAY);
+//    Canny(outputMat, outputMat, th1, th2);
+//}
 
 extern "C"
 JNIEXPORT void JNICALL

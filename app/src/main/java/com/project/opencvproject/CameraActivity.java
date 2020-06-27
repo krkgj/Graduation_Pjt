@@ -152,22 +152,22 @@ public class CameraActivity extends AppCompatActivity
 
     }
 
-    // 카메라 프레임을 전달이 필요할 때 호출되는 메소드
+    // 카메라 프레임 전달이 필요할 때 호출되는 메소드
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mInputMat = inputFrame.rgba();
-        if (mMode == 2) {
-            if (mResultMat == null) {
-                mResultMat = new Mat(mInputMat.rows(), mInputMat.cols(), mInputMat.type());
-            }
-            ConvertRGBtoGray(mInputMat.getNativeObjAddr(), mResultMat.getNativeObjAddr());
-            return mResultMat;
-        } else {
+//        if (mMode == 2) {
+//            if (mResultMat == null) {
+//                mResultMat = new Mat(mInputMat.rows(), mInputMat.cols(), mInputMat.type());
+//            }
+//            ConvertRGBtoGray(mInputMat.getNativeObjAddr(), mResultMat.getNativeObjAddr());
+//            return mResultMat;
+//        } else {
             Core.flip(mInputMat, mInputMat, 1);
             detectFace();
 
             return mInputMat;
-        }
+
     }
 
     private void detectFace() {
